@@ -15,7 +15,7 @@ namespace any {
          */
         any_test_game(int completed_games, const mj::game_data& data);
 
-    }
+    
     /**
          * The instructions given to the player at the beginning of the microgame.
          * 
@@ -67,7 +67,7 @@ namespace any {
         player _player;
 
 
-
+};
 #endif
 
 
