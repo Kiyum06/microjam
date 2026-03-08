@@ -23,19 +23,7 @@ player::player(bn::fixed_point starting_position, bn::fixed speed, bn::fixed gra
  * Reads from the d-pad and moves the player by one frame accordingly.
  */
 void player::update() {
-    if(bn::keypad::left_held()) {
-        _sprite.set_x(_sprite.x() - _speed);
-    }
-    if(bn::keypad::right_held()) {
-        _sprite.set_x(_sprite.x() + _speed);
-    }
-    if(bn::keypad::up_held()) {
-        _sprite.set_y(_sprite.y() - _speed);
-    }
-    if(bn::keypad::down_held()) {
-        _sprite.set_y(_sprite.y() + _speed);
-    }
-    _sprite.set_y(_sprite.y()-_gravity);
+    _sprite.set_y(_sprite.y()+_gravity);
 }
 
 /**
