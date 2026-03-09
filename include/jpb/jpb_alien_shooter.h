@@ -1,4 +1,5 @@
 #include "mj/mj_game.h"
+#include "jpb/jpb_player.h"
 
 namespace jpb {
   class jpb_alien_shooter : public mj::game {
@@ -16,5 +17,8 @@ namespace jpb {
       void fade_in(const mj::game_data& data) override;
 
       void fade_out(const mj::game_data& data) override;
+
+      private:
+        jpb_player _player;
   };
 }
