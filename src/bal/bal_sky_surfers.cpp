@@ -33,7 +33,6 @@ int bal_sky_surfers::total_frames() const {
 
 mj::game_result bal_sky_surfers::play([[maybe_unused]] const mj::game_data& data)
 {
-
     _bal_player.update();
 
     mj::game_result result(victory(), false);

@@ -2,9 +2,12 @@
 #define BAL_SKY_SURFERS_H
 
 #include <bn_sprite_ptr.h>
+#include <bn_vector.h>
+#include <bn_random.h>
 
 #include "mj/mj_game.h"
 #include "bal/bal_player.h"
+#include "bal/bal_rocks.h"
 
 namespace bal
 {
@@ -26,6 +29,8 @@ namespace bal
         void fade_out(const mj::game_data& data) override;
     private:
         player _bal_player;
+        bn::vector<rock, 20> _rocks;
+        
 
 };
 
