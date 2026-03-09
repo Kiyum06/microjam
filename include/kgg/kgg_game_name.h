@@ -1,0 +1,31 @@
+#ifndef KGG_GAME_NAME_H
+#define KGG_GAME_NAME_H
+
+#include "mj/mj_game.h"
+
+namespace kgg {  
+    
+class kgg_game_name : public mj::game
+{
+
+public:
+
+    kgg_game_name(int completed_games, const mj::game_data& data);
+
+    bn::string_view title() const override;
+
+    int total_frames() const override;
+
+    mj::game_result play() override;
+
+    bool victory() const override;
+
+    void fade_in() override;
+
+    void fade_out() override;
+
+};
+
+}
+
+#endif
