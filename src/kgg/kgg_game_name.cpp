@@ -1,5 +1,7 @@
+
 #include "kgg/kgg_game_name.h"
 #include "mj/mj_game_list.h"
+
 
 namespace {
 constexpr bn::string_view code_credits[] = { "Gurpinder Gill" };
@@ -13,6 +15,8 @@ namespace kgg {
 kgg_game_name::kgg_game_name(int completed_games, const mj::game_data& data)
 : mj::game("kgg")
 {
+    (void)completed_games;
+    (void)data;
 }
 
 bn::string<16> kgg_game_name::title() const
@@ -27,20 +31,25 @@ int kgg_game_name::total_frames() const
 
 mj::game_result kgg_game_name::play(const mj::game_data& data)
 {
+    (void)data;
+    _victory = true;
     return mj::game_result();
 }
 
 bool kgg_game_name::victory() const
 {
-    return false;
+    //return false;
+    return _victory;
 }
 
 void kgg_game_name::fade_in(const mj::game_data& data)
 {
+    (void)data;
 }
 
 void kgg_game_name::fade_out(const mj::game_data& data)
 {
+    (void)data;
 }
 
 }

@@ -24,6 +24,10 @@ public:
 
     void fade_out(const mj::game_data& data) override;
 
+private:
+    bool _victory = false;
+
+
 };
 
 }
