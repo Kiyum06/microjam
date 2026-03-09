@@ -1,4 +1,12 @@
 #include "kgg/kgg_game_name.h"
+#include "mj/mj_game_list.h"
+
+namespace {
+constexpr bn::string_view code_credits[] = { "Gurpinder Gill" };
+constexpr bn::string_view graphics_credits[] = { "" };
+constexpr bn::string_view music_credits[] = { "" };
+constexpr bn::string_view sfx_credits[] = { "" };
+}  
 
 namespace kgg {
 
@@ -36,3 +44,10 @@ void kgg_game_name::fade_out(const mj::game_data& data)
 }
 
 }
+MJ_GAME_LIST_ADD(kgg::kgg_game_name);
+
+MJ_GAME_LIST_ADD_CODE_CREDITS(code_credits);
+MJ_GAME_LIST_ADD_GRAPHICS_CREDITS(graphics_credits);
+MJ_GAME_LIST_ADD_MUSIC_CREDITS(music_credits);
+MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits); 
+
