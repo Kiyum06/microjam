@@ -4,7 +4,7 @@
 namespace
 {
     constexpr bn::string_view code_credits[] = { "Johncarlo", "John Baltazar" };
-    constexpr bn::string_view graphics_credits[] = { "Kenney Game Assets" };
+    constexpr bn::string_view graphics_credits[] = { "Johncarlo", "John Baltazar" };
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
 }
