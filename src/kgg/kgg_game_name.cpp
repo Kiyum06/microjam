@@ -56,9 +56,8 @@ void kgg_game_name::fade_in([[maybe_unused]] const mj::game_data& data)
 {
 }
 
-void kgg_game_name::fade_out(const mj::game_data& data)
+void kgg_game_name::fade_out([[maybe_unused]] const mj::game_data& data)
 {
-    (void)data;
 }
 
 }
