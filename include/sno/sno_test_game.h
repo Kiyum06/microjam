@@ -78,7 +78,8 @@ namespace sno
         sno::player _player;
         sno::black_hole _black_hole;
         bool _player_captured = false;
-        int _frames_elapsed = 0;
+        
+        bn::fixed _black_hole_attraction (mj::difficulty_level:: difficulty)
     };
 
 }
