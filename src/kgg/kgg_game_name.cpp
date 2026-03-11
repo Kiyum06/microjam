@@ -25,10 +25,10 @@ namespace kgg
         return "move left right";
     }
 
-    // rock difficulty
+    // returns rock fall speed based on the rock difficulty
     bn::fixed kgg_game_name::_recommended_rock_speed(mj::difficulty_level difficulty) {
     if(difficulty == mj::difficulty_level::EASY) {
-        return 1.0;       // easy
+        return 1.0;         // easy speed 
     } else if(difficulty == mj::difficulty_level::NORMAL) {
         return 2.5;       // medium 
     }
