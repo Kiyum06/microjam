@@ -4,17 +4,13 @@
 #include <bn_random.h>
 #include <bn_log.h>
 
-
 namespace sdg {
 
-bn::random rng = bn::random();
-
-input::input(int difficulty) : _diff(difficulty), _progress(0)
+input::input(int difficulty, bn::random& random) : _diff(difficulty), _random(random), _progress(0)
 {
     // loop to add random code inputs
     for (int i = 0; i < _diff; i++) {
-        rng.update();
-        int digit = rng.get_unbiased_int(4);
+        int digit = _random.get_unbiased_int(4);
         _challenge.push_back(digit);
         
         // for debug purposes
@@ -46,8 +42,6 @@ void input::update() {
             BN_LOG("CODE INCORRECT!");
         }
     }
-
-    rng.update();
 }
 
 // if code complete, victory is achieved

@@ -39,7 +39,7 @@ MJ_GAME_LIST_ADD_SFX_CREDITS(sfx_credits)
 namespace sdg{
     sdg_game::sdg_game([[maybe_unused]] int completed_games, [[maybe_unused]] const mj::game_data& data) :
     mj::game("sdg"),
-        _player(input(_code_difficulty(recommended_difficulty_level(completed_games, data))))
+        _player(input(_code_difficulty(recommended_difficulty_level(completed_games, data)), data.random))
     {}
 
     bn::string<16> sdg_game::title() const {

@@ -2,13 +2,14 @@
 #define SDG_INPUT_H
 
 #include <bn_vector.h>
+#include <bn_random.h>
 
 namespace sdg {
 
     class input {
         public:
             // Input constructor
-            input(int difficulty);
+            input(int difficulty, bn::random& random);
             /**
             * Reads the direction input value every frame.
             */
@@ -31,7 +32,8 @@ namespace sdg {
             // Game difficult, scales from 5 to 7 to 10, referring to amount of inputs required
             // to win.
             int _diff;
-
+            // Random number generator for random codes
+            bn::random& _random;
     };
 }
 
