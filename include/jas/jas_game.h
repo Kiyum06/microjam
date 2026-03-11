@@ -14,7 +14,7 @@ namespace jas
     {
     public:
         /**
-         * Constructor for an instance of an jas_game
+         * Constructor for an instance of a jas_game
          *
          * @param completed_games how many microgames the player has completed so far
          * @param data shared information, such as a rng and number of frames left in the microgame
@@ -50,7 +50,7 @@ namespace jas
         /**
          * Returns whether the player has won the microgame.
          *
-         * In this particular microgame the player wins if they make the ball leave the screen.
+         * In this particular microgame the player wins if they land WITHOUT crashing.
          */
         bool victory() const override;
 

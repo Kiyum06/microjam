@@ -22,23 +22,29 @@ namespace jas
     {
     }
     /**
-     * Reads from the d-pad and moves the player by one frame accordingly.
+     * Moves the player based on vertical speed, changing when the boost button (B) is held.
      */
     void player::update()
     {
+        // While the boost button is pressed
         if (bn::keypad::a_held())
         {
+            // Add BOOST_ACCELERATION to the player's speed.
             engineOn(BOOST_ACCELERATION);
         }
+        // If the player has already crashed, or is about to
         if (crashed() || (on_surface() && at_crash_velocity()))
         {
+            // Indicate they are crashed and keep them immobile at surface height
             _crashed = true;
             _sprite.set_y(CRASH_Y);
             _vertical_speed = 0;
         }
         else
         {
+            // Else, pull the player down by gravity
             _vertical_speed += _gravity;
+            // Move the player based on their current speed.
             _sprite.set_y(_sprite.y() + _vertical_speed);
         }
     }

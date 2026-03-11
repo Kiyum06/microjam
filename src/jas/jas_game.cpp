@@ -10,8 +10,8 @@
 
 namespace
 {
-    constexpr bn::string_view code_credits[] = {"JamisonAaronSea"};
-    constexpr bn::string_view graphics_credits[] = {""};
+    constexpr bn::string_view code_credits[] = {"Jam", "Aaron", "Sea"};
+    constexpr bn::string_view graphics_credits[] = {"Sea", "Aaron"};
     constexpr bn::string_view sfx_credits[] = {""};
     constexpr bn::string_view music_credits[] = {""};
 }
@@ -87,7 +87,7 @@ namespace jas
         _player.update();
 
         // Creates a game result indicating whether the game is finished and whether the title should be hidden early
-        // For this game the game should end early if the player has won (if victory returns true)
+        // For this game the game should end early if the player has landed and/or crashed.
         // The title is not hidden early (false is passed), so the title disappears at the default time
         mj::game_result result(victory() || _player.crashed(), false);
         return result;
@@ -96,7 +96,7 @@ namespace jas
     /**
      * Returns whether the player has won the microgame.
      *
-     * In this particular microgame the player wins if they make the ball leave the screen.
+     * In this particular microgame the player wins if they land WITHOUT crashing.
      */
     bool jas_game::victory() const
     {

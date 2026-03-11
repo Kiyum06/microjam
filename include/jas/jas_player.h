@@ -10,7 +10,7 @@ namespace jas
 {
 
     /**
-     * A character controlled with the d-pad.
+     * A character controlled with the B button, influenced by gravity.
      */
     class player
     {
@@ -19,6 +19,8 @@ namespace jas
 
         // The Velocity the player can land at before crashing
         static constexpr bn::fixed CRASH_VELOCITY = 1;
+        
+        // The Acceleration applied to the player while boosting
         static constexpr bn::fixed BOOST_ACCELERATION = 0.05;
 
     public:
@@ -27,25 +29,20 @@ namespace jas
          *
          * @param starting_position the location to start the player at
          * @param speed the pixels/frame the player moves at in each dimension
+         * @param vertical_speed the initial vertical speed of the player
+         * @param gravity the influence of gravity on the character
          */
         player(bn::fixed_point starting_position, bn::fixed vertical_speed, bn::fixed gravity);
 
         /**
-         * Reads from the d-pad and moves the player by one frame accordingly.
+         * Moves the player based on vertical speed, changing when the boost button (B) is held.
          */
         void update();
 
         /**
-         * When actived, engineOn will add increase the player's y axis position for a set amount of time
+         * When actived, engineOn will increase the player's vertical speed upwards (-y direction)
          */
         void engineOn(bn::fixed engine_thrust);
-
-        /**
-         * Returns whether the player has left the screen
-         *
-         * @return true if the player has left the screen, false if it is still on the screen
-         */
-        bool out_of_bounds() const;
 
         /**
          * Returns whether the player has gone beneath the surface (CRASH_Y)
@@ -62,7 +59,7 @@ namespace jas
         bool at_crash_velocity() const;
 
         /**
-         * Returns whether the player is crashed, i.e, has lost and should be denied winning.
+         * Returns whether the player is crashed, i.e, has lost.
          *
          * @return true if the player has crashed, false it hasn't
          */
