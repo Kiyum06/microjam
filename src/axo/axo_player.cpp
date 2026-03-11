@@ -47,8 +47,17 @@ void player::update() {
         ));
     }
 
-    for(bubble& b : bubbles) {
-        b.update();
+    for(int i = 0; i < bubbles.size(); ) {
+        bubbles[i].update();
+
+        if(bubbles[i].y() < MIN_Y) {
+            bubbles[i] = bubbles.back();
+            bubbles.pop_back();
+        }
+
+        else {
+            ++i;
+        }
     }
 
     // Keeps player from escaping the screen.
@@ -76,5 +85,9 @@ void player::update() {
 
     void player::kill() {
         _alive = false;
+    }
+
+    void player::clear_bubbles() {
+        bubbles.clear();
     }
 }

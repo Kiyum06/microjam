@@ -30,6 +30,10 @@ class bubble {
 
         void update();
 
+        bn::fixed y() const {
+            return _sprite.y();
+        }
+
         const hitbox& get_hitbox() const;
     
     private:

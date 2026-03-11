@@ -88,6 +88,7 @@ mj::game_result axo_aquatic_galaxy_defense::play([[maybe_unused]] const mj::game
     }
 
     if(!_player.alive()) {
+        _player.clear_bubbles();
         return mj::game_result(true, true);
     }
 
@@ -98,7 +99,7 @@ mj::game_result axo_aquatic_galaxy_defense::play([[maybe_unused]] const mj::game
 /**
  * Returns whether the player has won the microgame.
  * 
- * In this particular microgame the player wins if they make the ball leave the screen.
+ * In this particular microgame the player wins if they survive for the whole duration.
  */
 bool axo_aquatic_galaxy_defense::victory() const {
     return _player.alive();
@@ -120,6 +121,7 @@ void axo_aquatic_galaxy_defense::fade_in([[maybe_unused]] const mj::game_data& d
  */
 void axo_aquatic_galaxy_defense::fade_out([[maybe_unused]] const mj::game_data& data)
 {
+    _player.clear_bubbles();
 }
 
 }

@@ -44,6 +44,8 @@ class player {
         bool alive() const;
 
         void kill();
+
+        void clear_bubbles();
     
     private:
         // The sprite to display the player

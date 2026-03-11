@@ -7,6 +7,7 @@
 #include "axo/axo_player.h"
 #include "axo/axo_obstacle.h"
 #include "axo/axo_hitbox.h"
+#include "axo/axo_bubble.h"
 
 namespace axo
 {
