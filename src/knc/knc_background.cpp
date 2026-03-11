@@ -1,5 +1,5 @@
 #include "knc/knc_background.h"
-#include "bn_regular_bg_items_space_bg.h"  
+#include "bn_regular_bg_items_space_bg.h"
 
 namespace knc {
 

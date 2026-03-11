@@ -1,10 +1,10 @@
 #include "knc/knc_enemy.h"
-#include "bn_sprite_items_enemy.h"
+#include "bn_sprite_items_knc_enemy.h"
 
 namespace knc {
 
 enemy::enemy(bn::fixed_point position, bn::fixed speed, int direction) :
-    _sprite(bn::sprite_items::enemy.create_sprite(position)),
+    _sprite(bn::sprite_items::knc_enemy.create_sprite(position)),
     _position(position),
     _speed(speed),
     _direction(direction)

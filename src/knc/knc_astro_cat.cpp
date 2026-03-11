@@ -24,6 +24,9 @@ namespace knc {
 
     knc_astro_cat::knc_astro_cat(int completed_games, const mj::game_data& data)
         : mj::game("knc"),
+
+        _background(),
+
         // start in middle, speed number 1
         _cat(bn::fixed_point(0,40), 2),
         _difficulty(recommended_difficulty_level(completed_games, data)),
@@ -40,6 +43,10 @@ namespace knc {
 
       // stay waiting - hard mode added only
       _star3(bn::fixed_point(1000, 1000), _recommended_speed(recommended_difficulty_level(completed_games, data))),
+
+      // enemy ( off screen until hard mode)
+      _enemy1(bn::fixed_point(1000, 1000), _recommended_speed(recommended_difficulty_level(completed_games, data)), 1),
+      _enemy1_direction(true),
         _hit(false)
     {
         bn::fixed speed = _recommended_speed(_difficulty);
@@ -48,12 +55,13 @@ namespace knc {
     if(_difficulty == mj::difficulty_level::NORMAL || _difficulty == mj::difficulty_level::HARD) {
         _planet4 = planet(bn::fixed_point(30, -440), speed);
         _star1 = shooting_star(bn::fixed_point(-120, -30), speed);
-        _star2 = shooting_star(bn::fixed_point(-200, 18), speed);
+        _star2 = shooting_star(bn::fixed_point(-120, 18), speed);
     }
 
-    // hard gets star3
+    // hard gets star3 and enemy1
     if(_difficulty == mj::difficulty_level::HARD) {
-        _star3 = shooting_star(bn::fixed_point(-280, 0), speed);
+        _star3 = shooting_star(bn::fixed_point(-120, 0), speed);
+        _enemy1 = enemy(bn::fixed_point(-120, -20), speed, 1);
     }
 }
 
@@ -71,6 +79,7 @@ namespace knc {
     {
 
         bn::fixed speed = _recommended_speed(_difficulty);
+        _background.update();
         _cat.update();
 
         // update planet1
@@ -119,6 +128,19 @@ namespace knc {
             bn::fixed y = bn::fixed(data.random.get_int(140)) - 70;
             _star3 = shooting_star(bn::fixed_point(-120, y), speed);
         }
+
+
+        // hard mode only — update enemy ad alternate direction on respawn
+        _enemy1.update();
+        if(_enemy1.off_screen()) {
+            _enemy1_direction = !_enemy1_direction;
+            int dir = _enemy1_direction ? 1 : -1;
+            bn::fixed spawn_x = _enemy1_direction ? bn::fixed(-120) : bn::fixed(120);
+            bn::fixed y = bn::fixed(data.random.get_int(100)) - 50;
+            _enemy1 = enemy(bn::fixed_point(spawn_x, y), speed, dir);
+        }
+
+
         // if planet hit cat, end game 
         // if star hit cat, end game
 
@@ -131,7 +153,10 @@ namespace knc {
         _planet4.collides_with(_cat.position(), cat::COLLISION_RADIUS) ||
         _star1.collides_with(_cat.position(), cat::COLLISION_RADIUS) ||
         _star2.collides_with(_cat.position(), cat::COLLISION_RADIUS) ||
-        _star3.collides_with(_cat.position(), cat::COLLISION_RADIUS)) {
+        _star3.collides_with(_cat.position(), cat::COLLISION_RADIUS) ||
+
+        // hard only
+        _enemy1.collides_with(_cat.position(), cat::COLLISION_RADIUS)) {
             _hit = true;
     }
        // end game if cat got hit

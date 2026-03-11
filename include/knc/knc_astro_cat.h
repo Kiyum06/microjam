@@ -6,6 +6,8 @@
 #include "knc/knc_planet.h"
 #include "mj/mj_difficulty_level.h"
 #include "knc/knc_shooting_star.h"
+#include "knc/knc_background.h"
+#include "knc/knc_enemy.h"
 
 namespace knc {
     class knc_astro_cat : public mj::game {
@@ -23,6 +25,7 @@ namespace knc {
         // planet and shooting star speed + num
         static bn::fixed _recommended_speed (mj::difficulty_level difficulty);
 
+        background _background;
         cat _cat;
         mj::difficulty_level _difficulty;
         // easy+ normal + hard
@@ -37,6 +40,10 @@ namespace knc {
 
         // added only for hard
         shooting_star _star3;
+
+        // added only for hard
+        enemy _enemy1;
+        bool _enemy1_direction; 
         bool _hit;
 
     };
