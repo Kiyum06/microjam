@@ -24,6 +24,9 @@ namespace knc {
     private:
         static bn::fixed _recommended_speed (mj::difficulty_level difficulty);
 
+        // helper function for speed
+        static bn::fixed _initial_speed(int completed_games, const mj::game_data& data);
+
         background _background;
         cat _cat;
         mj::difficulty_level _difficulty;

@@ -19,6 +19,10 @@ namespace knc {
         return 3;
     }
 
+    // helper for intial speed
+    bn::fixed knc_astro_cat::_initial_speed(int completed_games, const mj::game_data& data) {
+    return _recommended_speed(recommended_difficulty_level(completed_games, data));
+}
     knc_astro_cat::knc_astro_cat(int completed_games, const mj::game_data& data)
         : mj::game("knc"),
         _background(),
@@ -26,18 +30,18 @@ namespace knc {
         _difficulty(recommended_difficulty_level(completed_games, data)),
 
         // start with three planet for EASY
-        _planet1(bn::fixed_point(0, -80), _recommended_speed(recommended_difficulty_level(completed_games, data))),
-        _planet2(bn::fixed_point(-50, -120), _recommended_speed(recommended_difficulty_level(completed_games, data))),
-        _planet3(bn::fixed_point(50, -247), _recommended_speed(recommended_difficulty_level(completed_games, data))),
+        _planet1(bn::fixed_point(0, -80), _initial_speed(completed_games, data)),
+        _planet2(bn::fixed_point(-50, -120), _initial_speed(completed_games, data)),
+        _planet3(bn::fixed_point(50, -247), _initial_speed(completed_games, data)),
 
         // stay waiting - normal + hard mode added these
-      _planet4(bn::fixed_point(1000, -5000), _recommended_speed(recommended_difficulty_level(completed_games, data))),
-      _star1(bn::fixed_point(-5000, 1000), _recommended_speed(recommended_difficulty_level(completed_games, data))),
-      _star2(bn::fixed_point(-5000, 1000), _recommended_speed(recommended_difficulty_level(completed_games, data))),
+      _planet4(bn::fixed_point(1000, -5000), _initial_speed(completed_games, data)),
+      _star1(bn::fixed_point(-5000, 1000), _initial_speed(completed_games, data)),
+      _star2(bn::fixed_point(-5000, 1000), _initial_speed(completed_games, data)),
 
       // stay waiting - hard mode added only
-      _star3(bn::fixed_point(-5000, 1000), _recommended_speed(recommended_difficulty_level(completed_games, data))),
-      _enemy1(bn::fixed_point(1000, 1000), _recommended_speed(recommended_difficulty_level(completed_games, data)), 1),
+      _star3(bn::fixed_point(-5000, 1000), _initial_speed(completed_games, data)),
+      _enemy1(bn::fixed_point(1000, 1000), _initial_speed(completed_games, data), 1),
         _enemy1_direction(true),
         _enemy1_delay(180),
         _hit(false)
