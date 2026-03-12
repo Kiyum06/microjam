@@ -42,15 +42,15 @@ namespace mar
         for (int i = 0; i < 15; i++)
         {
             enemies.push_back(mar_enemy(
-                {MAX_X / 2,
-                 data.random.get_int(MIN_Y / 2, MAX_Y / 2)},
+                {MAX_X,
+                 data.random.get_int(MIN_Y, MAX_Y)},
                 1));
             data.random.update();
         }
     }
 
     /**
-     * Game title shown at the beginning of the microgame and breif description of game.
+     * Game title shown at the beginning of the microgame and brief description of game.
      * Must be <= 16 characters long
      */
     bn::string<16> mar_mars_escape::title() const
