@@ -6,8 +6,9 @@
 
 namespace kgg {
 
-rock::rock(bn::fixed x, bn::fixed y)
-: _sprite(bn::sprite_items::rock.create_sprite(x, y)) // position to create the rock
+rock::rock(bn::fixed x, bn::fixed y, bn::fixed speed)
+: _sprite(bn::sprite_items::rock.create_sprite(x, y)), // position to create the rock
+  _speed(speed)
 {
 }
 
@@ -18,7 +19,7 @@ void rock::update()
         return;
     }
 
-    _sprite.set_y(_sprite.y() + 1); // rock moves downward by 1
+    _sprite.set_y(_sprite.y() + _speed); // rock moves downward by speed
 
     if(_sprite.y() > bn::display::height() / 2 + 8) // if the rock goes below the screen, hide it
     {
