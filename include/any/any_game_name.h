@@ -73,7 +73,6 @@ namespace any {
 
     private:
      //the character that the player can move
-     bn::optional<bn::sprite_ptr> _astronaut_sprite;
      bn::optional<player> _player;
      bool _has_lost = false;
 

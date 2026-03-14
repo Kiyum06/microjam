@@ -1,13 +1,13 @@
 #include "any_player.h"
 #include "bn_keypad.h"
+#include "bn_sprite_items_astronaut.h"
 
 namespace any {
 
     // Initializer list sets up the sprite and defaults
-    player::player(bn::sprite_ptr sprite) : 
-        _sprite(sprite),
-        _dy(0),
-        _is_jumping(false) 
+    player::player(bn::fixed x, bn::fixed y) : 
+        _sprite(bn::sprite_items::astronaut.create_sprite(x, y)),
+        _dy(0)
     {
     }
 

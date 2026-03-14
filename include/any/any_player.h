@@ -7,20 +7,17 @@
 #include "any_platform.h" 
 
 namespace any {
-
-class player {
-public:
-    player(bn::sprite_ptr sprite);
-    void update(bn::span<const platform> platforms); 
-
-    bn::fixed x() const;
-    bn::fixed y() const;
+    class player {
+    public:
+        player(bn::fixed x, bn::fixed y);
         
-private:
-    bn::sprite_ptr _sprite;
-    bn::fixed _dy = 0;
-    bool _is_jumping = false;
-};
+        void update(bn::span<const platform> platforms);
+        bn::fixed x() const;
+        bn::fixed y() const;
 
+    private:
+        bn::sprite_ptr _sprite;
+        bn::fixed _dy = 0;
+    };
 }
 #endif

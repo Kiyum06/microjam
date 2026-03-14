@@ -54,8 +54,7 @@ any_game_name::any_game_name(int completed_games, const mj::game_data& data) :
     
     _moon_sprite = bn::sprite_items::moon.create_sprite(85, _moon_y);
     
-    _astronaut_sprite = bn::sprite_items::astronaut.create_sprite(0, -20);
-    _player.emplace(*_astronaut_sprite);
+    _player.emplace(0, -20);
 
     _background = bn::regular_bg_items::bg.create_bg(0, 0);
     
