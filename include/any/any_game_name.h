@@ -75,10 +75,11 @@ namespace any {
      //the character that the player can move
      bn::optional<player> _player;
      bool _has_lost = false;
-     bool _player_touching_moon() const;
      bool _touched_moon() const;
 
      platform _platforms[3];
+
+     static constexpr int _moon_x = 85; 
 
      bn::optional<bn::sprite_ptr> _moon_sprite;
      bn::fixed _moon_y = -60;

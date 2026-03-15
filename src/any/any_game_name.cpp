@@ -34,25 +34,25 @@ any_game_name::any_game_name(int completed_games, const mj::game_data& data) :
     mj::difficulty_level difficulty = recommended_difficulty_level(completed_games, data);
 
     if (difficulty == mj::difficulty_level::EASY) {
-        _platforms[0] = {0, 40};
-        _platforms[1] = {-30, 10};
-        _platforms[2] = {40, -20}; 
+        _platforms[0].set_position(0, 40);
+        _platforms[1].set_position(-30, 10);
+        _platforms[2].set_position(40, -20); 
         _moon_y = -60;
     }
     else if (difficulty == mj::difficulty_level::NORMAL) {
-        _platforms[0] = {0, 40};
-        _platforms[1] = {-50, 5};  
-        _platforms[2] = {40, -25}; 
+        _platforms[0].set_position(0, 40);
+        _platforms[1].set_position(-50, 5);  
+        _platforms[2].set_position(40, -25); 
         _moon_y = -60;
     }
     else { // HARD
-        _platforms[0] = {0, 40};   
-        _platforms[1] = {-40, 10};  
-        _platforms[2] = {59, -30}; 
+        _platforms[0].set_position(0, 40);   
+        _platforms[1].set_position(-40, 10);  
+        _platforms[2].set_position(59, -30); 
         _moon_y = -65;
     }
     
-    _moon_sprite = bn::sprite_items::moon.create_sprite(85, _moon_y);
+    _moon_sprite = bn::sprite_items::moon.create_sprite(_moon_x, _moon_y);
     
     _player.emplace(0, -20);
 
@@ -60,7 +60,7 @@ any_game_name::any_game_name(int completed_games, const mj::game_data& data) :
     
     _background->set_priority(3);
 
-    bn::sprite_text_generator text_generator(mj::small_sprite_font);
+    bn::sprite_text_generator text_generator = data.text_generator;
     text_generator.set_center_alignment();
 
     bn::string_view diff_text;
@@ -110,10 +110,9 @@ bool any_game_name::_touched_moon() const {
         return false;
     }
 
-    constexpr int moon_x = 85; 
     constexpr int hitbox_size = 12; 
 
-    bn::fixed dx = bn::abs(_player->x() - moon_x);
+    bn::fixed dx = bn::abs(_player->x() - _moon_x);
     bn::fixed dy = bn::abs(_player->y() - _moon_y);
 
     return dx < hitbox_size && dy < hitbox_size;
