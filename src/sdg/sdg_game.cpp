@@ -78,8 +78,7 @@ namespace sdg{
             // Store the created sprite inside the _arrows vector.
             _arrows.push_back(bn::move(sprite));
 
-            // bn::move transfers ownership of the sprite into the vector
-            // instead of copying it.
+            // bn::move transfers ownership of the sprite into the vector instead of copying it
         }
     }
 
