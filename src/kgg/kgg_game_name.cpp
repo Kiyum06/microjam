@@ -107,6 +107,15 @@ mj::game_result kgg_game_name::play([[maybe_unused]] const mj::game_data& data)
     if(!_game_over)
     {
         _victory = true;
+        _score++;   // increase score every frame survived
+
+        // update score text
+        _score_sprites.clear();
+
+        bn::string<32> score_text = "Score: ";
+        score_text.append(bn::to_string<16>(_score));
+
+        _text_generator.generate(-100, -70, score_text, _score_sprites);
     }
 
     return mj::game_result();
