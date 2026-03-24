@@ -1,3 +1,7 @@
+// This code implements a simple dodge game. The player moves continuously, 
+// rocks are spawned at random x-positions at the top of the screen, and they fall downward. 
+// Collision with a rock ends the game. The score increases based on survival time
+
 #include "bn_keypad.h"
 #include "kgg/kgg_game_name.h"
 #include "mj/mj_game_list.h"
@@ -7,12 +11,9 @@
 
 #include "bn_sound_items.h" 
 
- 
-
-
 namespace {
-constexpr bn::string_view code_credits[] = { "Gurpinder Gill" };
-constexpr bn::string_view graphics_credits[] = { "" };
+constexpr bn::string_view code_credits[] = { "Gurpinder Gill" }; //constexpr is a compile-time constant.
+constexpr bn::string_view graphics_credits[] = { "" }; //A string_view is like a lightweight reference to a string. It avoids making unnecessary copies
 constexpr bn::string_view music_credits[] = { "" };
 constexpr bn::string_view sfx_credits[] = { "" };
 }  
@@ -33,7 +34,8 @@ bn::fixed kgg_game_name::_speed(mj::difficulty_level difficulty)
 }
 
 kgg_game_name::kgg_game_name(int completed_games, const mj::game_data& data)
-: mj::game("kgg"),
+: mj::game("kgg"), // The constructor uses an initializer list to initialize the base mj::game class and 
+// create the background. Initializer lists are preferred for efficiency and required for certain members
   
   _background(bn::regular_bg_items::kgg_background.create_bg())
 {
@@ -102,6 +104,11 @@ mj::game_result kgg_game_name::play([[maybe_unused]] const mj::game_data& data)
             return mj::game_result{ true, true };
         }
     }
+    //This is a C++ range-based for loop that iterates through every rock in the _rocks container. 
+    // The variable r is declared as a reference to avoid copying each rock. 
+    // This allows the loop to update the actual rock objects directly. 
+    // During each iteration the rock is updated and then checked for collision with the player.
+
 
     // if game is not over, then player win the game
     if(!_game_over)
